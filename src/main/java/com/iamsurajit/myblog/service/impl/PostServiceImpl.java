@@ -7,6 +7,9 @@ import com.iamsurajit.myblog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -19,22 +22,42 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDto createPost(PostDto postDto) {
-        Post p1 = new Post();
-        p1.setId(postDto.getId());
-        p1.setTitle(postDto.getTitle());
-        p1.setDescription(postDto.getDescription());
-        p1.setContent(postDto.getContent());
+        Post p1 = mapToEntity(postDto);
 
-        //save entity
+        //convert DTO to entity
         Post newPost=postRepository.save(p1);
 
         //convert entity to DTO
-        PostDto postResponse = new PostDto();
-        postResponse.setId(newPost.getId());
-        postResponse.setTitle(newPost.getTitle());
-        postResponse.setDescription(newPost.getDescription());
-        postResponse.setContent(newPost.getContent());
+       PostDto postResponse = mapToDto(newPost);
 
         return postResponse;
     }
+
+    @Override
+    public List<PostDto> getAllPost() {
+        List<Post> postList =  postRepository.findAll();
+        return postList.stream().map(post -> mapToDto(post)).collect(Collectors.toList());
+    }
+
+    // Map entity to DTO
+    private PostDto mapToDto(Post post){
+        PostDto dto = new PostDto();
+        dto.setId(post.getId());
+        dto.setTitle(post.getTitle());
+        dto.setDescription(post.getDescription());
+        dto.setContent(post.getContent());
+
+        return dto;
+    }
+
+    //Map DTO to entity
+    private Post mapToEntity(PostDto dto){
+        Post post = new Post();
+        post.setId(dto.getId());
+        post.setTitle(dto.getTitle());
+        post.setDescription(dto.getDescription());
+        post.setContent(dto.getContent());
+        return post;
+    }
+
 }
