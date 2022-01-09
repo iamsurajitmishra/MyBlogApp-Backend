@@ -1,5 +1,6 @@
 package com.iamsurajit.myblog.service.impl;
 
+import com.iamsurajit.myblog.exception.ResourceNotFoundException;
 import com.iamsurajit.myblog.model.Post;
 import com.iamsurajit.myblog.payload.PostDto;
 import com.iamsurajit.myblog.repository.PostRepository;
@@ -20,6 +21,7 @@ public class PostServiceImpl implements PostService {
         this.postRepository = postRepository;
     }
 
+    //Create a new row on the Post table in DB
     @Override
     public PostDto createPost(PostDto postDto) {
         Post p1 = mapToEntity(postDto);
@@ -33,11 +35,19 @@ public class PostServiceImpl implements PostService {
         return postResponse;
     }
 
+    //Return all post as List<PostDto>
     @Override
     public List<PostDto> getAllPost() {
         List<Post> postList =  postRepository.findAll();
         return postList.stream().map(post -> mapToDto(post)).collect(Collectors.toList());
     }
+
+    //Return Post by Id
+    public PostDto getPostById(Long id){
+        return postRepository.findById(id).map(post -> (mapToDto(post)))
+                .orElseThrow(()->new ResourceNotFoundException("post","id",id));
+    }
+
 
     // Map entity to DTO
     private PostDto mapToDto(Post post){

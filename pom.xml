@@ -14,7 +14,7 @@
 	<name>myblog</name>
 	<description>Blog app using spring boot+hibrnate+jpa+jwt+rest</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
