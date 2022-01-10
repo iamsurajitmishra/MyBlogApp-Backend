@@ -37,7 +37,7 @@ public class PostController {
      */
     @GetMapping
     public PostResponseDto getPost(@RequestParam(value = "pageNo", defaultValue = MyBlogConstant.DEFAULT_PAGE_NO, required = false) int pageNo,
-                                   @RequestParam(value = "pageSize", defaultValue = MyBlogConstant.DEFAULT_PAGE_size, required = false) int pageSize,
+                                   @RequestParam(value = "pageSize", defaultValue = MyBlogConstant.DEFAULT_PAGE_SIZE, required = false) int pageSize,
                                    @RequestParam(value = "sortBy", defaultValue = MyBlogConstant.DEFAULT_SORT_BY, required = false) String sortBy,
                                    @RequestParam(value = "sortDir", defaultValue = MyBlogConstant.DEFAULT_SORT_DIR, required = false) String sortDir) {
 
