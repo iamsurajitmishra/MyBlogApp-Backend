@@ -1,6 +1,8 @@
 package com.iamsurajit.myblog.service;
 
 import com.iamsurajit.myblog.payload.PostDto;
+import com.iamsurajit.myblog.payload.PostResponseDto;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ public interface PostService {
     //update post
     PostDto updatePost(PostDto postDto,Long id);
     //get all post
-    List<PostDto> getAllPost(int pageNo,int pageSize);
+    PostResponseDto getAllPost(int pageNo, int pageSize, String sortBy,String sortDir);
     //get post by ID
     PostDto getPostById(Long id);
     //delete post by id
