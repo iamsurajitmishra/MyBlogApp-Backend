@@ -2,6 +2,7 @@ package com.iamsurajit.myblog.service.impl;
 
 import com.iamsurajit.myblog.exception.ResourceNotFoundException;
 import com.iamsurajit.myblog.model.Post;
+import com.iamsurajit.myblog.payload.CommentDto;
 import com.iamsurajit.myblog.payload.PostDto;
 import com.iamsurajit.myblog.payload.PostResponseDto;
 import com.iamsurajit.myblog.repository.PostRepository;
@@ -97,7 +98,7 @@ public class PostServiceImpl implements PostService {
         dto.setTitle(post.getTitle());
         dto.setDescription(post.getDescription());
         dto.setContent(post.getContent());
-
+       // dto.setComments(post.getComments());
         return dto;
     }
 
@@ -108,6 +109,7 @@ public class PostServiceImpl implements PostService {
         post.setTitle(dto.getTitle());
         post.setDescription(dto.getDescription());
         post.setContent(dto.getContent());
+        //post.setComments(dto.getComments());
         return post;
     }
 

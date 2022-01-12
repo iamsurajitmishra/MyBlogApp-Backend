@@ -1,6 +1,7 @@
 package com.iamsurajit.myblog.model;
 
 
+import com.iamsurajit.myblog.payload.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
